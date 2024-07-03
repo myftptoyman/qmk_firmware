@@ -1,4 +1,4 @@
-# RK 632
+# RK 750
 
 * Keyboard Maintainer: [yangzheng20003](https://github.com/yangzheng20003)
 * Hardware Supported: RK 750
