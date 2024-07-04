@@ -1,4 +1,4 @@
-# RK 851US
+# RK 851UK
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
 * Hardware Supported: RK 851
@@ -6,11 +6,11 @@
 
 Make example for this keyboard (after setting up your build environment):
 
-    make rk/rk851us:default
+    make rk/rk851uk:default
         
 Flashing example for this keyboard:
 
-    make rk/rk851us:default:flash
+    make rk/rk851uk:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 
