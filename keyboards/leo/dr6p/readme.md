@@ -1,16 +1,16 @@
-# AP61
+# DR6P
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
-* Hardware Supported: AP61
+* Hardware Supported: DR6P
 * Hardware Availability: [XXX](https://www.XXX.com)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make leo/ap61:default
+    make leo/dr6p:default
         
 Flashing example for this keyboard:
 
-    make leo/ap61:default:flash
+    make leo/dr6p:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 
