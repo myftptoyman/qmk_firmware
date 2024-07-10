@@ -23,4 +23,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,  GU_TOGG,   KC_LALT,                                   KC_SPC,                                  KC_RALT,  _______,  KC_APP,   KC_RCTL,   RGB_SPD,RGB_VAD,  RGB_SPI ),
 };
 
+#ifdef ENCODER_MAP_ENABLE
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [0] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [1] = {ENCODER_CCW_CW(_______, _______)},
+};
+#endif
+
 // clang-format on
