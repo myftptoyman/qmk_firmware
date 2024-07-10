@@ -1,6 +1,6 @@
 {
     "manufacturer": "HS",
-    "keyboard_name": "RK 773",
+    "keyboard_name": "RK773",
     "maintainer": "sdk66",
     "bootloader": "wb32-dfu",
     "diode_direction": "ROW2COL",

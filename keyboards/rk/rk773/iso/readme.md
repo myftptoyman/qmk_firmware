@@ -1,16 +1,16 @@
-# RK 773
+# RK773
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
-* Hardware Supported: RK 773
+* Hardware Supported: RK773
 * Hardware Availability: [rk](http://www.rkgaming.com)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make rk/rk773:default
+    make rk/rk773/iso:default
         
 Flashing example for this keyboard:
 
-    make rk/rk773:default:flash
+    make rk/rk773/iso:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 
