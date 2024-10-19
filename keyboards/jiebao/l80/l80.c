@@ -181,7 +181,9 @@ void keyboard_post_init_kb(void) {
 
 #ifdef WIRELESS_ENABLE
     wireless_init();
-    // wireless_devs_change(!confinfo.devs, confinfo.devs, false);
+#if !(defined(MM_BT_DEF_PIN) && defined(MM_2G4_DEF_PIN))
+    wireless_devs_change(!confinfo.devs, confinfo.devs, false);
+#endif
     post_init_timer = timer_read32();
 #endif
     
