@@ -2,7 +2,7 @@
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
 * Hardware Supported: AL68A
-* Hardware Availability: [XXX](https://www.XXX.com)
+* Hardware Availability: [AL68A](https://www.jiebao.com)
 
 Make example for this keyboard (after setting up your build environment):
 
