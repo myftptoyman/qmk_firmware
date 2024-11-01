@@ -1,16 +1,16 @@
-# L67
+# spade_65
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
-* Hardware Supported: L67
-* Hardware Availability: [L67](https://www.jiebao.com)
+* Hardware Supported: spade_65
+* Hardware Availability: [spade_65](https://www.jiebao.com)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make jiebao/l67:default
+    make jiebao/spade_65:default
         
 Flashing example for this keyboard:
 
-    make jiebao/l67:default:flash
+    make jiebao/spade_65:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 
