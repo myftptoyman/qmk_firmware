@@ -849,11 +849,15 @@ void rgb_matrix_wls_indicator(void) {
                 if (rgb_matrix_wls_indicator_cb() != true) {
                     return;
                 }
-            }
+            }0-
         }
 
         if (wls_rgb_indicator_times % 2) {
+#ifdef HS_RGB
+            rgb_matrix_set_color(wls_rgb_indicator_index, wls_rgb_indicator_rgb.g, wls_rgb_indicator_rgb.r, wls_rgb_indicator_rgb.b);
+#else
             rgb_matrix_set_color(wls_rgb_indicator_index, wls_rgb_indicator_rgb.r, wls_rgb_indicator_rgb.g, wls_rgb_indicator_rgb.b);
+#endif
         } else {
             rgb_matrix_set_color(wls_rgb_indicator_index, 0x00, 0x00, 0x00);
         }
