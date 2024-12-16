@@ -1,16 +1,16 @@
-# ET 7233
+# k717
 
 * Keyboard Maintainer: [yangzheng20003](https://github.com/yangzheng20003)
-* Hardware Supported: ET 7233
+* Hardware Supported: k717
 * Hardware Availability: [ET](http://www.redragonzone.com)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make et/et7233:default
+    make et/k717:default
         
 Flashing example for this keyboard:
 
-    make et/et7233:default:flash
+    make et/k717:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 
