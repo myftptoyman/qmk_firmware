@@ -1,7 +1,7 @@
 {
     "manufacturer": "epomaker",
     "keyboard_name": "Galaxy QMK",
-    "maintainer": "yangzheng20003",
+    "maintainer": "Epomaker",
     "bootloader": "wb32-dfu",
     "bootmagic": {
         "matrix": [0, 0]

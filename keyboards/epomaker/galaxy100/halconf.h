@@ -1,4 +1,4 @@
-// Copyright 2024 yangzheng20003 (@yangzheng20003)
+// Copyright 2024 Epomaker (@Epomaker)
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once

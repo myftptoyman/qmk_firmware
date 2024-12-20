@@ -1,6 +1,6 @@
 # Galaxy100
 
-* Keyboard Maintainer: [yangzheng20003](https://github.com/yangzheng20003)
+* Keyboard Maintainer: [Epomaker](https://github.com/Epomaker)
 * Hardware Supported: Galaxy100
 * Hardware Availability: Galaxy100
 
