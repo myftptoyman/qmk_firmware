@@ -6,11 +6,11 @@
 
 Make example for this keyboard (after setting up your build environment):
 
-    make vter/galaxy100:default
+    make epomaker/galaxy100:default
         
 Flashing example for this keyboard:
 
-    make vter/galaxy100:default:flash
+    make epomaker/galaxy100:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 

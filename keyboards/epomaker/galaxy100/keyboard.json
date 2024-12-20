@@ -1,5 +1,5 @@
 {
-    "manufacturer": "VTER",
+    "manufacturer": "epomaker",
     "keyboard_name": "Galaxy QMK",
     "maintainer": "yangzheng20003",
     "bootloader": "wb32-dfu",
