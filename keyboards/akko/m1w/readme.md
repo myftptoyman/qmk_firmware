@@ -1,7 +1,7 @@
 # M1W
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
-* Hardware Supported: RK851
+* Hardware Supported: M1W
 * Hardware Availability: [XXX](http://www.XXX.com)
 
 Make example for this keyboard (after setting up your build environment):

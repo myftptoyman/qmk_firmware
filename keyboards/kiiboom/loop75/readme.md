@@ -1,16 +1,16 @@
-# KIIBOOM LOOP 75
+# KiiBOOM LOOP 75
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
-* Hardware Supported: KIIBOOM LOOP 75
-* Hardware Availability: [kiiboom](https://www.kiiboom.com)
+* Hardware Supported: KiiBOOM LOOP 75
+* Hardware Availability: [KiiBOOM](https://www.kiiboom.com)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make epomaker/loop75:default
+    make kiiboom/loop75:default
         
 Flashing example for this keyboard:
 
-    make epomaker/loop75:default:flash
+    make kiiboom/loop75:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 

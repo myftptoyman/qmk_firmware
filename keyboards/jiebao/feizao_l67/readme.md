@@ -1,8 +1,8 @@
-# FEIZA0_L67
+# FEIZAO_L67
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
-* Hardware Supported: FEIZA0_L67
-* Hardware Availability: [XXX](https://www.XXX.com)
+* Hardware Supported: AL68A
+* Hardware Availability: [FEIZAO_L67](https://www.jiebao.com)
 
 Make example for this keyboard (after setting up your build environment):
 

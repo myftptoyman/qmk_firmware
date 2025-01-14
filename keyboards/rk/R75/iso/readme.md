@@ -1,16 +1,16 @@
-# RK851
+# R75
 
 * Keyboard Maintainer: [sdk66](https://github.com/sdk66)
-* Hardware Supported: RK851
+* Hardware Supported: R75
 * Hardware Availability: [rk](http://www.rkgaming.com)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make rk/rk851/iso:default
+    make rk/r75/iso:default
         
 Flashing example for this keyboard:
 
-    make rk/rk851/iso:default:flash
+    make rk/r75/iso:default:flash
 
 To reset the board into bootloader mode, do one of the following:
 
