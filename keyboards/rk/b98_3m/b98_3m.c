@@ -849,7 +849,7 @@ void rgb_matrix_wls_indicator(void) {
                 if (rgb_matrix_wls_indicator_cb() != true) {
                     return;
                 }
-            }0-
+            }
         }
 
         if (wls_rgb_indicator_times % 2) {
