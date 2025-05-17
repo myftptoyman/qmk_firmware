@@ -30,27 +30,27 @@ bool hs_modeio_detection(bool update, uint8_t *mode,uint8_t lsat_btdev) {
         case 1:
             *mode = hs_bt;
             if (sw_mode) {
-                wireless_devs_change(wireless_get_current_devs(), lsat_btdev, false); 
-                
+                wireless_devs_change(wireless_get_current_devs(), lsat_btdev, false);
+
             }
             break;
         case 2:
             *mode = hs_2g4;
             if (sw_mode) {
-                wireless_devs_change(wireless_get_current_devs(), DEVS_2G4, false);  
-               
+                wireless_devs_change(wireless_get_current_devs(), DEVS_2G4, false);
+
             }
             break;
         case 3:
             *mode = hs_usb;
-            if (sw_mode) 
+            if (sw_mode)
                 wireless_devs_change(wireless_get_current_devs(), DEVS_USB, false);
 
             break;
         default:
             break;
     }
-    
+
     if (sw_mode) {
         hs_rgb_blink_set_timer(timer_read32());
         suspend_wakeup_init();
@@ -66,7 +66,7 @@ bool hs_modeio_detection(bool update, uint8_t *mode,uint8_t lsat_btdev) {
 static uint32_t hs_linker_rgb_timer = 0x00;
 
 bool hs_mode_scan(bool update,uint8_t moude,uint8_t lsat_btdev) {
-   
+
     if (hs_modeio_detection(update, &moude, lsat_btdev)) {
 
         return true;
@@ -90,13 +90,13 @@ bool hs_rgb_blink_hook(){
         last_status = *md_getp_state();
         hs_rgb_blink_set_timer(0x00);
     }
-    
+
     switch (*md_getp_state())
     {
         case MD_STATE_NONE: {
                 hs_rgb_blink_set_timer(0x00);
         } break;
-        
+
         case MD_STATE_DISCONNECTED:
             if (hs_rgb_blink_get_timer() == 0x00){
                 hs_rgb_blink_set_timer(timer_read32());
@@ -109,7 +109,7 @@ bool hs_rgb_blink_hook(){
                     md_send_devctrl(MD_SND_CMD_DEVCTRL_USB);
                     wait_ms(200);
                     lpwr_set_timeout_manual(true);
-                    
+
                 }
             }
         case MD_STATE_CONNECTED:
@@ -174,7 +174,7 @@ void palcallback_cb(uint8_t line){
         } break;
 #endif
         default: {
-            
+
         } break;
     }
 }

@@ -12,6 +12,7 @@ void rgblight_call_driver(LED_TYPE *start_led, uint8_t num_leds) {
     memcpy(led, start_led, sizeof(LED_TYPE) * num_leds);
 }
 
+#ifdef RGBLIGHT_CUSTOM_DRIVER
 void rgblight_set(void) {
     LED_TYPE *start_led;
     uint8_t num_leds = rgblight_ranges.clipping_num_leds;
@@ -31,6 +32,20 @@ void rgblight_set(void) {
     start_led = led0 + rgblight_ranges.clipping_start_pos;
     rgblight_call_driver(start_led, num_leds);
 }
+#else
+
+#include "ws2812.h"
+
+void setleds_custom(rgb_led_t *led, uint16_t led_num) {
+    ws2812_setleds(led, led_num);
+}
+
+const rgblight_driver_t rgblight_driver = {
+    .init    = ws2812_init,
+    .setleds = setleds_custom,
+};
+
+#endif
 
 bool rgb_matrix_indicators_advanced_rgblight(uint8_t led_min, uint8_t led_max) {
 

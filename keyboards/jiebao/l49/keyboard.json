@@ -23,8 +23,8 @@
         "nkro": true,
         "rgb_matrix": true,
         "deferred_exec": true,
-        "rgblight": false,
-        "encoder": false
+        "encoder": false,
+        "rgblight": true
     },
     "keycodes": [
         {
@@ -68,6 +68,12 @@
         },
         {
             "key": "KC_FTOG"
+        },
+        {
+            "key": "MY_LAY1"
+        },
+        {
+            "key": "MY_LAY2"
         }
     ],
     "dynamic_keymap": {
@@ -127,15 +133,15 @@
         },
         "driver": "ws2812",
         "layout": [
-            {"matrix": [3, 0], "x": 0, "y": 64, "flags": 4},   
-            {"matrix": [3, 1], "x": 17, "y": 64, "flags": 4},  
-            {"matrix": [3, 2], "x": 34, "y": 64, "flags": 4},  
-            {"matrix": [3, 3], "x": 52, "y": 64, "flags": 4},  
-            {"matrix": [3, 4], "x": 69, "y": 64, "flags": 4},  
-            {"matrix": [3, 5], "x": 86, "y": 64, "flags": 4},  
-            {"matrix": [3, 7], "x": 120, "y": 64, "flags": 4}, 
-            {"matrix": [3, 8], "x": 138, "y": 64, "flags": 4}, 
-            {"matrix": [3, 9], "x": 155, "y": 64, "flags": 4}, 
+            {"matrix": [3, 0], "x": 0, "y": 64, "flags": 4},
+            {"matrix": [3, 1], "x": 17, "y": 64, "flags": 4},
+            {"matrix": [3, 2], "x": 34, "y": 64, "flags": 4},
+            {"matrix": [3, 3], "x": 52, "y": 64, "flags": 4},
+            {"matrix": [3, 4], "x": 69, "y": 64, "flags": 4},
+            {"matrix": [3, 5], "x": 86, "y": 64, "flags": 4},
+            {"matrix": [3, 7], "x": 120, "y": 64, "flags": 4},
+            {"matrix": [3, 8], "x": 138, "y": 64, "flags": 4},
+            {"matrix": [3, 9], "x": 155, "y": 64, "flags": 4},
             {"matrix": [3, 10], "x": 172, "y": 64, "flags": 4},
             {"matrix": [3, 13], "x": 224, "y": 64, "flags": 4},
             {"matrix": [2, 13], "x": 224, "y": 43, "flags": 4},
@@ -190,19 +196,19 @@
     },
     "rgblight": {
         "animations": {
-            "alternatin":true,
+            "alternatin":false,
             "breathing": true,
-            "christmas":true,
-            "knight":true,
-            "rainbow_mood": true,
-            "rainbow_swirl": true,
-            "rgb_test": true,
-            "snake": true,
-            "static_gradient": true,
-            "twinkle": true
+            "christmas":false,
+            "knight":false,
+            "rainbow_mood": false,
+            "rainbow_swirl": false,
+            "rgb_test": false,
+            "snake": false,
+            "static_gradient": false,
+            "twinkle": false
         },
         "default": {
-            "animation": "rainbow_swirl",
+            "animation": "breathing",
             "val": 60
         }
     },

@@ -3,67 +3,104 @@
 
 #include QMK_KEYBOARD_H
 #include "rgb_record/rgb_record.h"
+#include "control/control.h"
+#include "rgb_record/rgb_rgblight.h"
 
 #define  win(kc) (QK_LGUI | (KC_##kc))
+#define  my_win MY_LAY1
+#define  my_fn  MY_LAY2
+#define  my_space TD(TD_SPACE_LAYER)
 
 enum layers {
     _BL = 0,
     _FBL,
     _FL,
-    _MBL,
     _FFL,
+    _MBL,
     _MFL,
     _DEFA
 };
 
+enum {
+    TD_SPACE_LAYER,
+};
+
+void td_space_finished(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        register_code(KC_SPACE);
+    } else if (state->count == 2) {
+        layer_invert(_FFL);
+
+        // if (layer_state_is(_FFL)) {
+        //     rgblight_toggle();
+        //     // rgblight_mode(0);
+        //     // rgb_matrix_set_color(0, 0x20, 0x20, 0x20);
+        //     rgb_matrix_set_color_all(0x00, 0x00, 0x00);
+        //     rgb_matrix_set_color(27, 6, 6, 6);
+        // } else {
+        //     rgblight_disable();
+        // }
+    }
+}
+
+void td_space_reset(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        unregister_code(KC_SPACE);  // Release space after single tap
+    }
+}
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_SPACE_LAYER] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_space_finished, td_space_reset),
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BL] = LAYOUT( 
+    [_BL] = LAYOUT(
         KC_ESC,   KC_Q,      KC_W,      KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,      KC_P,     KC_LBRC,  KC_RBRC, KC_BSPC,
         KC_TAB,   KC_A,      KC_S,      KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,      KC_SCLN,  KC_QUOT,           KC_ENT,
         KC_LSFT,  KC_Z,      KC_X,      KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,    KC_SLSH,                     KC_RSFT,
-        KC_LCTL,  MO(_MBL),  KC_LALT,   KC_SPC,   KC_SPC,   MO(_FL),            KC_SPC,   MO(_FBL), MO(_FBL),  KC_RCTL,                     KC_DEL
-        ),  
+        KC_LCTL,  MO(_MBL),  KC_LALT,   KC_SPC,   KC_SPC,   my_fn,              my_space, MO(_FBL), MO(_FBL),  KC_RCTL,                     KC_DEL
+        ),
 
-    [_FBL] = LAYOUT( 
+    [_FBL] = LAYOUT(
         KC_ESC ,  KC_1,      KC_2,      KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,      KC_0,     KC_UP,    _______, KC_BSPC,
-        KC_TAB,   KC_A,      KC_S,      KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,      KC_LEFT,  KC_RIGHT,          KC_ENT,
-        KC_LSFT,  KC_Z,      KC_X,      KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,    KC_DOWN,                     KC_RSFT,
-        KC_LCTL,  MO(_MBL),  KC_LALT,  KC_SPC,   KC_SPC,    KC_SPC,             KC_SPC,   KC_RALT,  _______,   KC_RCTL,                     MO(_FL)
-        ), 
+        KC_TAB,   KC_A,      KC_S,      KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_HOME,  KC_PGUP,   KC_LEFT,  KC_RIGHT,          KC_ENT,
+        KC_LSFT,  KC_Z,      KC_X,      KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_END,   KC_PGDN,   KC_DOWN,                     KC_RSFT,
+        KC_LCTL,  MO(_MBL),  KC_LALT,   KC_SPC,   KC_SPC,   KC_SPC,             KC_SPC,   KC_RALT,  _______,   KC_RCTL,                     KC_DEL
+        ),
 
-    [_FL] = LAYOUT( 
+    [_FL] = LAYOUT(
         KC_GRV,   KC_1,      KC_2,      KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,      KC_0,     KC_MINS,  KC_EQL,  KC_BSPC,
         KC_USB,   KC_BT1,    KC_BT2,    KC_BT3,   KC_2G4,   KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,   KC_VOLU,  KC_BSLS,           RGB_TOG,
         _______,  LED_TOG,   HS_BATQ,   KC_CAPS,  KC_V,     KC_B,     KC_N,     KC_M,     RGB_HUI,  RGB_MOD,   RGB_VAI,                     MO(_DEFA),
         KC_FTOG,  GU_TOGG,   _______,   _______,  _______,  _______,            _______,  RGB_SPD,  RGB_VAD,   RGB_SPI,                     KC_DEL
         ),
 
-    [_MBL] = LAYOUT( 
+    [_FFL] = LAYOUT(
+        KC_ESC,   KC_Q,      KC_W,      KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,      KC_P,     KC_LBRC,  KC_RBRC, KC_BSPC,
+        KC_TAB,   KC_A,      KC_S,      KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,      KC_SCLN,  KC_QUOT,           KC_ENT,
+        KC_LSFT,  KC_Z,      KC_X,      KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,    KC_UP,                       KC_RSFT,
+        KC_LCTL,  MO(_MFL),  KC_LALT,   KC_SPC,   KC_SPC,   KC_SPC,             my_space, KC_LEFT,  KC_DOWN,   KC_RIGHT,                    KC_DEL
+        ),
+
+    [_MBL] = LAYOUT(
         KC_GRV ,  KC_F1,     KC_F2,     KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,   KC_PGUP,  _______, KC_BSPC,
         KC_TAB,   win(A),    win(S),    win(D),   win(F),   win(G),   win(H),   win(J),   win(K),   win(L),    KC_HOME,  KC_END,            KC_ENT,
         KC_LSFT,  win(Z),    win(X),    win(C),   win(V),   win(B),   win(N),   win(M),   KC_COMM,  KC_DOT,    KC_PGDN,                     KC_RSFT,
-        KC_LCTL,  _______,   KC_LCMD,   win(SPC), win(SPC), win(SPC),           win(SPC), KC_RCMD,  KC_RALT,   KC_RCTL,                     KC_DEL
-        ),  
-
-    [_FFL] = LAYOUT(  
-        KC_ESC ,  KC_F1,     KC_F2,     KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,   KC_F11,   KC_F12,  KC_BSPC, 
-        KC_TAB,   KC_A,      KC_S,      KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,      KC_SCLN,  KC_QUOT,           KC_ENT,                           
-        KC_LSFT,  KC_Z,      KC_X,      KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,    KC_SLSH,                     KC_RSFT,      
-        KC_LCTL,  KC_LALT,   KC_LCMD,   KC_SPC,   KC_SPC,   KC_SPC,             KC_SPC,   KC_RCMD,  KC_RALT,   KC_RCTL,                     KC_DEL
-        ),   
-
-    [_MFL] = LAYOUT( 
-        KC_GRV,   KC_1,      KC_2,      KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,      KC_0,     KC_MINS,  KC_EQL,  KC_DEL,
-        KC_USB,   KC_BT1,    KC_BT2,    KC_BT3,   KC_2G4,   KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,   KC_VOLU,  KC_BSLS,           EE_CLR,
-        _______,  LED_TOG,   HS_BATQ,   KC_CAPS,  RP_P0,    RP_END,   TO(_BL),  KC_NO,    RGB_HUI,  RGB_MOD,   RGB_VAI,                     MO(_DEFA),
-        KC_FTOG,  GU_TOGG,   _______,   _______,  _______,  _______,            _______,  RGB_SPD,  RGB_VAD,   RGB_SPI,                     _______
+        KC_LCTL,  _______,   KC_LALT,   win(SPC), win(SPC), win(SPC),           win(SPC), KC_RCMD,  KC_RALT,   KC_RCTL,                     KC_DEL
         ),
 
-    [_DEFA] = LAYOUT(  
+    [_MFL] = LAYOUT(
+        KC_ESC,   KC_Q,      KC_W,      KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,      KC_P,     KC_LBRC,  KC_RBRC, KC_BSPC,
+        KC_TAB,   KC_A,      KC_S,      KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,      KC_SCLN,  KC_QUOT,           KC_ENT,
+        KC_LSFT,  KC_Z,      KC_X,      KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,    KC_PGUP,                     KC_RSFT,
+        KC_LCTL,  _______,   KC_LALT,   KC_SPC,   KC_SPC,   KC_SPC,             my_space, KC_HOME,  KC_PGDN,   KC_END,                      KC_DEL
+        ),
+
+    [_DEFA] = LAYOUT(
         KC_TILD,  _______,   _______,   _______,  _______,  _______,  _______,  _______,  _______,  KC_TEST,   _______,   _______,  _______, QK_BOOT,
-        _______,  _______,   _______,   _______,  _______,  _______,  _______,  _______,  _______,  KC_TEST,   _______,   _______,           EE_CLR,  
-        _______,  _______,   _______,   _______,  _______,  _______,  _______,  _______,  _______,  _______,   _______,                      _______,                                     
+        _______,  _______,   _______,   _______,  _______,  _______,  _______,  _______,  _______,  KC_TEST,   _______,   _______,           EE_CLR,
+        _______,  _______,   _______,   _______,  _______,  _______,  _______,  _______,  _______,  _______,   _______,                      _______,
         _______,  _______,   _______,   _______,  _______,  KC_PGUP,            _______,  _______,  _______,   _______,                      _______
         ),
 };
@@ -71,22 +108,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM rgbrec_default_effects[RGBREC_CHANNEL_NUM][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         ________, ________,  HS_GREEN,  ________, ________, ________, ________, ________, ________, ________,  ________,  ________, ________,________,
-        ________, HS_GREEN,  HS_GREEN,  HS_GREEN, ________, ________, ________, ________, ________, ________,  ________,  ________,          ________,  
-        ________, ________,  ________,  ________, ________, ________, ________, ________, ________, ________,  HS_GREEN,                     ________,                                     
+        ________, HS_GREEN,  HS_GREEN,  HS_GREEN, ________, ________, ________, ________, ________, ________,  ________,  ________,          ________,
+        ________, ________,  ________,  ________, ________, ________, ________, ________, ________, ________,  HS_GREEN,                     ________,
         ________, ________,  ________,  ________, ________, ________,           ________, HS_GREEN, HS_GREEN,  HS_GREEN,                     ________
         ),
 
     [1] = LAYOUT(
         ________, ________,  HS_RED,    ________, ________, ________, ________, ________, ________, ________,  ________,  ________, ________,________,
-        ________, HS_RED,    HS_RED,    HS_RED,   ________, ________, ________, ________, ________, ________,  ________,  ________,          ________,  
-        ________, ________,  ________,  ________, ________, ________, ________, ________, ________, ________,  HS_RED,                       ________,                                     
+        ________, HS_RED,    HS_RED,    HS_RED,   ________, ________, ________, ________, ________, ________,  ________,  ________,          ________,
+        ________, ________,  ________,  ________, ________, ________, ________, ________, ________, ________,  HS_RED,                       ________,
         ________, ________,  ________,  ________, ________, ________,           ________, HS_RED,   HS_RED,    HS_RED,                       ________
         ),
 
     [2] = LAYOUT(
         ________, ________,  HS_BLUE,   ________, ________, ________, ________, ________, ________, ________,  ________,  ________, ________,________,
-        ________, HS_BLUE,   HS_BLUE,   HS_BLUE,  ________, ________, ________, ________, ________, ________,  ________,  ________,          ________,  
-        ________, ________,  ________,  ________, ________, ________, ________, ________, ________, ________,  HS_BLUE,                      ________,                                     
+        ________, HS_BLUE,   HS_BLUE,   HS_BLUE,  ________, ________, ________, ________, ________, ________,  ________,  ________,          ________,
+        ________, ________,  ________,  ________, ________, ________, ________, ________, ________, ________,  HS_BLUE,                      ________,
         ________, ________,  ________,  ________, ________, ________,           ________, HS_BLUE,  HS_BLUE,   HS_BLUE,                      ________
         ),
 };
@@ -146,6 +183,71 @@ const key_override_t *key_overrides[] = {
         &alt_t_key_override,
         &alt_slash_key_override
 };
+
+
+/*Default layer is white.*/
+/*Remember to also change the color in keyboard_post_init_kb in boston.c to make the startup color match the layer 0 color */
+const rgblight_segment_t PROGMEM layer_0[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 0, 0, 0, 128}  /*White*/
+);
+
+const rgblight_segment_t PROGMEM layer_1[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 48, 0, 255, 128} /*Red*/
+);
+
+const rgblight_segment_t PROGMEM layer_2[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 48, 21, 255, 128} /*Orange*/
+);
+
+const rgblight_segment_t PROGMEM layer_3[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 48, 43, 255, 128} /*Yellow*/
+);
+
+const rgblight_segment_t PROGMEM layer_4[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 48, 75, 255, 128} /*Green*/
+);
+
+const rgblight_segment_t PROGMEM layer_5[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 48, 135, 255, 128} /*Teal*/
+);
+
+const rgblight_segment_t PROGMEM layer_6[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 48, 160, 255, 128} /*Blue*/
+);
+
+const rgblight_segment_t PROGMEM layer_7[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 48, 190, 255, 128} /*Magenta*/
+);
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    layer_0,
+    layer_1,
+    layer_2,
+    layer_3,
+    layer_4,
+    layer_5,
+    layer_6,
+    layer_7
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    // Both layers will light up if both kb layers are active
+    rgblight_set_layer_state(0, layer_state_cmp(state, 0));
+    rgblight_set_layer_state(1, layer_state_cmp(state, 1));
+    rgblight_set_layer_state(2, layer_state_cmp(state, 2));
+    rgblight_set_layer_state(3, layer_state_cmp(state, 3));
+    rgblight_set_layer_state(4, layer_state_cmp(state, 4));
+    rgblight_set_layer_state(5, layer_state_cmp(state, 5));
+    rgblight_set_layer_state(6, layer_state_cmp(state, 6));
+    rgblight_set_layer_state(7, layer_state_cmp(state, 7));
+    return state;
+}
+
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
