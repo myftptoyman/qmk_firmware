@@ -421,6 +421,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             layer_off(_FL);
         }
         break;
+        case KC_RCTL:
+            if (record->event.pressed) {
+                rgblight_set_layer_state(5, true);
+            } else {
+                rgblight_set_layer_state(5, false);
+            }
+            break;
+        case KC_LALT:
+            if (record->event.pressed) {
+                rgblight_set_layer_state(5, true);
+                rgblight_set_layer_state(8, true);
+            } else {
+                rgblight_set_layer_state(5, false);
+                rgblight_set_layer_state(8, false);
+            }
+            break;
+        case KC_RSFT:
+            if (record->event.pressed) {
+                rgblight_set_layer_state(6, true);
+            } else {
+                rgblight_set_layer_state(6, false);
+            }
+            break;
+        case KC_LCTL:
+            if (record->event.pressed) {
+                rgblight_set_layer_state(7, true);
+            } else {
+                rgblight_set_layer_state(7, false);
+            }
+            break;
         default: {
             if (rgbrec_is_started()) {
                 if (!IS_QK_MOMENTARY(keycode) && record->event.pressed) {

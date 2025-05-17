@@ -3,6 +3,8 @@
 
 #pragma once
 
+// #define CONSOLE_ENABLE
+
 #define USB_POWER_EN_PIN                    B1 // USB ENABLE pin
 #define LED_POWER_EN_PIN                    A5 // LED ENABLE pin
 #define HS_BAT_CABLE_PIN                    A7 // USB insertion detection pin
@@ -84,13 +86,15 @@
 #define RGB_MATRIX_KEYPRESSES
 
 /* RGB Light */
-#define RGBLED_NUM 8
+#define RGBLED_NUM 50
 // #define RGBLIGHT_CUSTOM_DRIVER
 #define RGBLIGHT_DISABLE_KEYCODES
 #define BREATHING_VAL           40
 #define RAINBOW_MOOD            40
 #define LED_TYPE                RGB
-#define RGBLIGHT_LED_MAP {0, 1, 2, 3, 4, 5, 6, 7}
+
+#define RGBLIGHT_LED_MAP {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49}
+
 #define RGBLIGHT_DEFAULT_ON     false
 
 /* WS2812 */
